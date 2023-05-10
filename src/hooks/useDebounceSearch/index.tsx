@@ -27,7 +27,7 @@ export const useDebounce = ({
       } else if (isEmpty(searchTerm)) {
         searchParams.delete('q');
       }
-      setSearchParams((prev) => new URLSearchParams(prev));
+      // setSearchParams((prev) => new URLSearchParams(prev));
     }, 400);
 
     return () => {
