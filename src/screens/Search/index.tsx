@@ -5,13 +5,14 @@ import {
   InputGroup,
   Button,
   InputLeftElement,
-  CircularProgress,
   Flex,
   SimpleGrid,
   Text,
+  InputRightElement,
 } from '@chakra-ui/react';
 
 import { FiSearch } from 'react-icons/fi';
+import { RiCloseLine } from 'react-icons/ri';
 import Book from '../../components/Book';
 import { useSearchForBooks } from '../../services/Search/query';
 import { useAddBookToReadingList } from '../../services/ReadingList/query';
@@ -104,11 +105,23 @@ const Search = () => {
               value={search}
             />
             <InputLeftElement children={<FiSearch color="green.500" />} />
+            {!isEmpty(search) && (
+              <InputRightElement width="4.5rem" justifyContent={'end'}>
+                <Button h="1.75rem" size="md" variant={'none'} px={0} mx={0} onClick={()=>setSearch('')}>
+                  <RiCloseLine />
+                </Button>
+              </InputRightElement>
+            )}
           </InputGroup>
         </form>
       </Box>
       {!isLoading ? (
-        <SimpleGrid columns={[1, 2, 3, 4, 5]} gap={5} my={10} className='animate__animated animate__fadeIn'>
+        <SimpleGrid
+          columns={[1, 2, 3, 4, 5]}
+          gap={5}
+          my={10}
+          className="animate__animated animate__fadeIn"
+        >
           {booksResults.map((book) => (
             <Book
               key={book.id}
@@ -122,7 +135,7 @@ const Search = () => {
           ))}
         </SimpleGrid>
       ) : (
-        <Loader/>
+        <Loader />
       )}
 
       {!isLoading && booksResults && (
