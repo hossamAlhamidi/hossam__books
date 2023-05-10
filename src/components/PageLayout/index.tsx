@@ -1,37 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Box,
-  Flex,
-  Button,
-  useColorModeValue,
-  Tabs,
-  TabList,
-  Tab,
-  useToast,
-} from '@chakra-ui/react';
+import { Box, Flex, useColorModeValue, useToast } from '@chakra-ui/react';
 import Sidebar from '../Sidebar';
-// import Footer from "./Footer";
-// import Header from "./Header";
-// import Logo from "../assets/Logo.png";
 
 import { MdMenu } from 'react-icons/md';
-// import { useLogOut } from '../utils/helpers';
-
 
 import Navbar from '../Navbar/Navbar';
 
-
 interface IPrivateRouteLayoutProps {
-    children: React.ReactNode;
-  }
+  children: React.ReactNode;
+}
 
-
-export const PageLayout = ({ children }:IPrivateRouteLayoutProps) => {
+export const PageLayout = ({ children }: IPrivateRouteLayoutProps) => {
   const [isMobile, setIsMobile] = useState(false);
   const [showSideNav, setShowSideNav] = useState(true);
- 
-
-  const toast = useToast();
 
   useEffect(() => {
     function resize() {
@@ -50,9 +31,6 @@ export const PageLayout = ({ children }:IPrivateRouteLayoutProps) => {
       window.removeEventListener('resize', resize);
     };
   }, []);
-
-//   const logOut = useLogOut();
-
 
 
   return (
@@ -74,19 +52,12 @@ export const PageLayout = ({ children }:IPrivateRouteLayoutProps) => {
               : 'calc(100% - 65px)'
           }
           transition="0.3s all ease-in-out"
-          // bg={useColorModeValue('#fff', '#1E1F23')}
           bg={useColorModeValue('lightMode.bodyBg', 'darkMode.bodyBg')}
           h="64px"
-          // position={'sticky'}
           top={0}
           left={270}
-          // borderBottom="1px solid #EDF1F7"
-          // borderBottomWidth="1px"
-          // borderBottomColor={useColorModeValue('lightMode.gray', '#EDF1F720')}
-          // boxShadow={"0px 4px 4px rgba(0, 0, 0, 0.25)"}
           display={isMobile ? 'flex' : 'flex'}
           alignItems={isMobile ? 'center' : 'center'}
-          // zIndex='2'
         >
           {isMobile && !showSideNav && (
             <MdMenu
@@ -96,8 +67,6 @@ export const PageLayout = ({ children }:IPrivateRouteLayoutProps) => {
               style={{ marginInlineStart: '10px' }}
             />
           )}
-
-         
         </Box>
       </>
 
@@ -118,23 +87,9 @@ export const PageLayout = ({ children }:IPrivateRouteLayoutProps) => {
           overflowX="hidden"
           p={'20px 27px'}
         >
-          {children }
+          {children}
         </Box>
       </Flex>
-      <Box mt={'auto'}>{/* <Footer /> */}</Box>
-      {/* <Button
-        onClick={logOut}
-        bgColor='red.600'
-        color='#fff'
-        position='fixed'
-        top={{ base: '4px', lg: '12px' }}
-        right='16px'
-        zIndex='3'
-      >
-        {' '}
-        LogOut
-      </Button> */}
     </Box>
   );
 };
-

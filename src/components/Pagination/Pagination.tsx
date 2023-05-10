@@ -4,13 +4,20 @@ import { usePagination, DOTS } from './usePagination';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import { IoEllipsisHorizontal } from 'react-icons/io5';
 
-const Pagination = (props: any) => {
+type PaginationPropsType = {
+  onPageChange: (selectedPage: number) => void;
+  totalCount: number;
+  pageSize: number;
+  siblingCount?: number;
+  currentPage: number;
+};
+const Pagination = (props: PaginationPropsType) => {
   const {
     onPageChange,
     totalCount,
+    pageSize,
     siblingCount = 1,
     currentPage,
-    pageSize,
   } = props;
 
   const paginationRange: any = usePagination({
@@ -37,9 +44,7 @@ const Pagination = (props: any) => {
     'darkMode.white'
   );
 
-  // if (currentPage === 0 || paginationRange.length < 2) {
-  //     return null;
-  // }
+ 
   let lastPage = paginationRange[paginationRange.length - 1];
   const onNext = () => {
     if (currentPage !== lastPage) onPageChange(currentPage + 1);

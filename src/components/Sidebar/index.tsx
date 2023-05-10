@@ -1,83 +1,61 @@
+import React, { Dispatch, SetStateAction } from 'react';
 import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
   Box,
   Divider,
   Flex,
-  Image,
   Switch,
   Text,
   useColorMode,
   useColorModeValue,
-  useToast,
-  Button,
 } from '@chakra-ui/react';
-import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { MdGridView, MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
-import { BiServer } from 'react-icons/bi';
-import { BsGear } from 'react-icons/bs';
-import { FiTool, FiAlertTriangle } from 'react-icons/fi';
-import { GiBinoculars } from 'react-icons/gi';
-import { RiSearchLine } from 'react-icons/ri';
 
-import {
-  RiAlertFill,
-  RiBookOpenFill,
-  RiEdit2Fill,
-  RiLogoutBoxRLine,
-} from 'react-icons/ri';
-import { TfiBag } from 'react-icons/tfi';
-import { SlUser } from 'react-icons/sl';
+import { NavLink } from 'react-router-dom';
+import {  MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
+import { FiSearch } from 'react-icons/fi';
 import { CiViewTimeline } from 'react-icons/ci';
-import { useQueryClient } from 'react-query';
 
-import { Navigate } from 'react-router-dom';
-const Sidebar = ({ isMobile, showSideNav, setShowSideNav }: any) => {
-  const navigate = useNavigate();
-  const toast = useToast();
-  const queryClient = useQueryClient();
+const activeStyle = {
+  backgroundColor: '#1152BA',
+  // width: '240px',
+  display: 'flex',
+  alignItems: 'center',
+  fontSize: '14px',
+  fontWeight: '500',
+  height: '44px',
+  borderRadius: ' 0px 4.55887px 4.55887px 0px',
+  lineHeight: '16.94px',
+  color: '#fff',
+  margin: '16px 0',
+  padding: '8px',
+  paddingLeft: '20px',
+};
 
-  // const detection_rule_isVisible = getPermissionsAlt(permissions,"_indicator",userType).userActions.view
+interface ISidebar {
+  isMobile: boolean;
+  showSideNav: boolean;
+  setShowSideNav: Dispatch<SetStateAction<true | false>>;
+}
+
+const Sidebar = ({ isMobile, showSideNav, setShowSideNav }: ISidebar) => {
+  const { toggleColorMode } = useColorMode();
+  const colorMode = useColorModeValue('light', 'dark');
+
   const data = [
     {
       id: 1,
       name: 'Reading List',
       path: '/',
-      icon: <MdGridView style={{ marginRight: 8, fontSize: '24px' }} />,
+      icon: <CiViewTimeline style={{ marginRight: 8, fontSize: '24px' }} />,
       isVisible: true,
     },
     {
       id: 2,
       name: 'Search',
       path: '/search',
-      icon: <CiViewTimeline style={{ marginRight: 8, fontSize: '24px' }} />,
+      icon: <FiSearch style={{ marginRight: 8, fontSize: '24px' }} />,
       isVisible: true,
     },
-    
   ];
-
-  const { toggleColorMode } = useColorMode();
-  const colorMode = useColorModeValue('light', 'dark');
-
-  const activeStyle = {
-    backgroundColor: '#1152BA',
-    // width: '240px',
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: '14px',
-    fontWeight: '500',
-    height: '44px',
-    borderRadius: ' 0px 4.55887px 4.55887px 0px',
-    lineHeight: '16.94px',
-    color: '#fff',
-    margin: '16px 0',
-    padding: '8px',
-    paddingLeft: '20px',
-  };
 
   return (
     <Box
@@ -102,17 +80,8 @@ const Sidebar = ({ isMobile, showSideNav, setShowSideNav }: any) => {
         alignItems="center"
         justifyContent={'center'}
       >
-        {/* {!showSideNav && (
-            <Image src='/img/cognna.svg' height='30px' alt='Cight' mr={'5px'} />
-          )} */}
         {showSideNav && (
           <Flex flex="1 1 auto" alignItems="center">
-            {/* <Image
-                src='/img/cognna.svg'
-                height='40px'
-                marginRight='12px'
-                alt='Cight'
-              /> */}
             <Text fontWeight={700} fontSize="22px" color="#fff">
               My Books
             </Text>
@@ -205,23 +174,6 @@ const Sidebar = ({ isMobile, showSideNav, setShowSideNav }: any) => {
                 onChange={toggleColorMode}
               />
             </Flex>
-            {/* <Flex
-                flexDir={showSideNav ? 'row' : 'column-reverse'}
-                justifyContent='space-between'
-                alignItems={'center'}
-                mt={5}
-              >
-                <Text
-                  fontWeight={400}
-                  fontSize={showSideNav ? '14px' : '12px'}
-                  color='#fff'
-                >
-                Logout
-                </Text>
-                <Button bg={'transparent'} isLoading={isLoading} onClick={logout} p={0} _hover={{border:'1px solid white'}}>
-                <RiLogoutBoxRLine style={{ marginRight: 8,cursor:'pointer', fontSize: '24px', color:'red'}} />
-                </Button>
-              </Flex> */}
           </Flex>
         </Box>
       </Box>

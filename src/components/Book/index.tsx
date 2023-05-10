@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   Image,
@@ -14,7 +13,24 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import fallbackImage from '../../assets/images/not_available.jpg';
-const Book = ({ title, image, authors,id,isSameBtn,actions=[] }: any) => {
+import { IResourceCardActions } from '../../types/global';
+type BookProps = {
+  title: string;
+  image: string;
+  authors: string[];
+  id: string | number;
+  isSameBtn: boolean;
+  actions: IResourceCardActions<any>[];
+};
+
+const Book = ({
+  title,
+  image,
+  authors,
+  id,
+  isSameBtn,
+  actions = [],
+}: BookProps) => {
   return (
     <Card maxW="sm">
       <CardBody>
@@ -37,27 +53,22 @@ const Book = ({ title, image, authors,id,isSameBtn,actions=[] }: any) => {
       </CardBody>
       <Divider />
       <CardFooter>
-        <ButtonGroup spacing="2"  width={'100%'}>
-          {/* <Button variant="solid" colorScheme="blue">
-            Add to reading list
-          </Button> */}
-          {
-          actions&&actions.map((action:any,index:number)=>{
-            return(
-              <Button 
-              key={index}
-              variant={action.type} 
-              width={'100%'}
-              colorScheme="blue"
-              onClick={()=>action?.onPress({title,image,authors,id})}
-              isLoading={isSameBtn&&action?.isLoading}
-              >
-             {action.label}
-            </Button>
-            )
-          })
-          }
-          
+        <ButtonGroup spacing="2" width={'100%'}>
+          {actions &&
+            actions.map((action: any, index: number) => {
+              return (
+                <Button
+                  key={index}
+                  variant={action.type}
+                  width={'100%'}
+                  colorScheme="blue"
+                  onClick={() => action?.onPress({ title, image, authors, id })}
+                  isLoading={isSameBtn && action?.isLoading}
+                >
+                  {action.label}
+                </Button>
+              );
+            })}
         </ButtonGroup>
       </CardFooter>
     </Card>

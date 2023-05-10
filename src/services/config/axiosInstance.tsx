@@ -6,7 +6,7 @@ import axios, {
 export const baseUrl =
   `https://www.googleapis.com/books/v1/`;
 
-  console.log(process.env.REACT_APP_BOOKS_API_KEY);
+ 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
   headers: {
