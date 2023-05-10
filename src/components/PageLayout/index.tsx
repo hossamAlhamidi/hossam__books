@@ -85,7 +85,7 @@ export const PageLayout = ({ children }: IPrivateRouteLayoutProps) => {
           }
           transition="0.3s all ease-in-out"
           overflowX="hidden"
-          p={'20px 27px'}
+          p={['20px 20px','20px 27px']}
         >
           {children}
         </Box>

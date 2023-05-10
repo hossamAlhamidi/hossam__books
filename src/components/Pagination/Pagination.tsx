@@ -96,7 +96,7 @@ const Pagination = (props: PaginationPropsType) => {
             <Button
               key={`page-${pageNumber}`}
               variant={'pagination'}
-              marginLeft="8px"
+              marginLeft={['2px',"8px"]}
               borderColor={
                 pageNumber === currentPage
                   ? selectedBorderColor
