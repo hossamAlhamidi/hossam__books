@@ -12,7 +12,7 @@ import {
   useGetReadingList,
   useDeleteBookFromReadingList,
 } from '../../services/ReadingList/query';
-
+import { Loader } from '../../components/WithSuspense';
 import { isEmpty } from '../../utils';
 import { BookItem } from '../../types/global';
 interface ReadingListBookData {
@@ -59,7 +59,12 @@ const ReadingList = () => {
   return (
     <Fragment>
       {!isLoading ? (
-        <SimpleGrid columns={[1, 2, 3, 4, 5]} gap={5} my={10}>
+        <SimpleGrid
+          columns={[1, 2, 3, 4, 5]}
+          gap={5}
+          my={10}
+          className="animate__animated animate__fadeIn"
+        >
           {data
             ?.sort(
               (a: ReadingListBookData, b: ReadingListBookData) =>
@@ -78,9 +83,7 @@ const ReadingList = () => {
             ))}
         </SimpleGrid>
       ) : (
-        <Flex justifyContent={'center'} alignItems={'center'} minH={'50vh'}>
-          <CircularProgress isIndeterminate color="green.300" />
-        </Flex>
+        <Loader />
       )}
     </Fragment>
   );

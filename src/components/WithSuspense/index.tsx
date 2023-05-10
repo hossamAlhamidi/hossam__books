@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Box, CircularProgress, useColorModeValue } from '@chakra-ui/react';
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <Box
       display="flex"

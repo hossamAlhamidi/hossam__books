@@ -19,7 +19,7 @@ import BookPagination from '../../components/Pagination';
 import { useDebounce } from '../../hooks/useDebounceSearch';
 import { isEmpty } from '../../utils';
 import { BookItem } from '../../types/global';
-
+import { Loader } from '../../components/WithSuspense';
 const Search = () => {
   const [search, setSearch] = useState<string>('');
   const [bookAdded, setBookAdded] = useState<string | number>('');
@@ -108,7 +108,7 @@ const Search = () => {
         </form>
       </Box>
       {!isLoading ? (
-        <SimpleGrid columns={[1, 2, 3, 4, 5]} gap={5} my={10}>
+        <SimpleGrid columns={[1, 2, 3, 4, 5]} gap={5} my={10} className='animate__animated animate__fadeIn'>
           {booksResults.map((book) => (
             <Book
               key={book.id}
@@ -122,9 +122,7 @@ const Search = () => {
           ))}
         </SimpleGrid>
       ) : (
-        <Flex justifyContent={'center'} alignItems={'center'} minH={'50vh'}>
-          <CircularProgress isIndeterminate color="green.300" />
-        </Flex>
+        <Loader/>
       )}
 
       {!isLoading && booksResults && (
