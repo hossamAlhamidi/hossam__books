@@ -75,8 +75,10 @@ const config = {
             _hover: {
                 textDecoration: 'none',
               },
-          }
-          
+          },
+          '::-webkit-scrollbar': {
+            display: 'none',
+          },
         }),
       },
         fonts: {

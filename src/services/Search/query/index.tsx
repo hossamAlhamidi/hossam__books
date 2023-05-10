@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
 import { searchForBooks } from '../api';
 
-export const useSearchForBooks = (query: string, options = {}) => {
+export const useSearchForBooks = (payload: any, options = {}) => {
   const { data, isLoading, refetch } = useQuery(
-    ['searchForBooks', query],
-    () => searchForBooks(query),
+    ['searchForBooks', payload],
+    () => searchForBooks(payload),
     {
       ...options,
       // enabled: false,

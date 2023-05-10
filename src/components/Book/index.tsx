@@ -14,7 +14,7 @@ import {
   Tooltip,
 } from '@chakra-ui/react';
 import fallbackImage from '../../assets/images/not_available.jpg';
-const Book = ({ title, description, image, authors }: any) => {
+const Book = ({ title, image, authors,id,isSameBtn,actions=[] }: any) => {
   return (
     <Card maxW="sm">
       <CardBody>
@@ -23,7 +23,7 @@ const Book = ({ title, description, image, authors }: any) => {
           alt="book cover"
           borderRadius="lg"
           width={'100%'}
-          height={'350px'}
+          height={'200px'}
         />
         <Stack mt="6" spacing="3">
           <Heading size="md" noOfLines={2}>
@@ -37,13 +37,27 @@ const Book = ({ title, description, image, authors }: any) => {
       </CardBody>
       <Divider />
       <CardFooter>
-        <ButtonGroup spacing="2">
-          <Button variant="solid" colorScheme="blue">
+        <ButtonGroup spacing="2"  width={'100%'}>
+          {/* <Button variant="solid" colorScheme="blue">
             Add to reading list
-          </Button>
-          {/* <Button variant="ghost" colorScheme="blue">
-            Add to cart
           </Button> */}
+          {
+          actions&&actions.map((action:any,index:number)=>{
+            return(
+              <Button 
+              key={index}
+              variant={action.type} 
+              width={'100%'}
+              colorScheme="blue"
+              onClick={()=>action?.onPress({title,image,authors,id})}
+              isLoading={isSameBtn&&action?.isLoading}
+              >
+             {action.label}
+            </Button>
+            )
+          })
+          }
+          
         </ButtonGroup>
       </CardFooter>
     </Card>
