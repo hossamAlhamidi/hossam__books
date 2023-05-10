@@ -17,10 +17,10 @@ function BookPagination({
   pageSize,
 }: IProps) {
   return (
-    <Flex w="100%" paddingTop="24px">
+    <Flex w="100%" paddingTop="24px" flexWrap={'wrap'} justifyContent={'center'}>
       <Flex flex={1}></Flex>
       <Select
-        w="190px"
+        w={["190px"]}
         defaultValue={pageSize}
         onChange={(e: any) => {
           setPageSize(parseInt(e.target.value));

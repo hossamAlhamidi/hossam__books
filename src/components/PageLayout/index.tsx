@@ -42,7 +42,7 @@ export const PageLayout = ({ children }: IPrivateRouteLayoutProps) => {
       position="relative"
     >
       <>
-        {/* <Navbar></Navbar> */}
+        <Navbar></Navbar>
         <Box
           width={
             showSideNav
@@ -53,7 +53,7 @@ export const PageLayout = ({ children }: IPrivateRouteLayoutProps) => {
           }
           transition="0.3s all ease-in-out"
           bg={useColorModeValue('lightMode.bodyBg', 'darkMode.bodyBg')}
-          h="64px"
+          // h="64px"
           top={0}
           left={270}
           display={isMobile ? 'flex' : 'flex'}
